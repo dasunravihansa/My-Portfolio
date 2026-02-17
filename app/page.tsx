@@ -127,19 +127,19 @@ const projects = [
     },
     {
         id: 2,
-        title: "Lord Buddha Website",
-        tech: "HTML • CSS • JS",
+        title: "Arix AI System",
+        tech: "Python • Groq •Pyqt6",
         pcVideo: "/p3-pc.mp4",
         mobileVideo: "/p3-mob.mp4",
-        link: "https://aspuwa.netlify.app/",
+        link: "https://github.com/dasunravihansa/Arix-AI-System/tree/main",
     },
     {
         id: 3,
-        title: "Hotel Website",
-        tech: "HTML • CSS • JS",
+        title: "Super Market Login System",
+        tech: "Python • Pyqt6 • Sqlite3",
         pcVideo: "/p2-pc.mp4",
         mobileVideo: "/p2-mob.mp4",
-        link: "https://peppy-smakager-202d51.netlify.app/",
+        link: "https://github.com/dasunravihansa/Arix-Login-System.git",
     },
 ];
 
@@ -443,53 +443,77 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-                        {projects.map((project, index) => (
+                    <div className="mb-16 max-w-3xl mx-auto text-center">
+                        <AnimatePresence mode="wait">
                             <motion.div
-                                key={project.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                viewport={{ once: true }}
-                                // Added gap-10 here to separate Monitor from Text
-                                className="flex flex-col items-center w-full gap-10"
+                                key={activeTab}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.5, ease: "easeOut" }}
+                                className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10"
                             >
-                                {/* PC MONITOR VIEW */}
-                                {activeTab === 'pc' && (
-                                    <div className="relative w-full max-w-112.5 aspect-video group">
-                                        {/* Video Wrapper */}
-                                        <div className="relative bg-gray-900 rounded-t-xl border-4 md:border-6 border-gray-800 shadow-2xl overflow-hidden w-full h-full">
-                                            <VideoPlayer src={project.pcVideo} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                                            <div className="absolute inset-0 bg-linear-to-tr from-white/5 to-transparent pointer-events-none"></div>
-                                        </div>
-                                        {/* Stand Base */}
-                                        <div className="h-4 md:h-6 bg-gray-800 rounded-b-xl flex items-center justify-center border-t border-gray-700">
-                                            <div className="w-1 h-1 bg-green-500 rounded-full shadow-[0_0_5px_#22c55e]"></div>
-                                        </div>
-                                        <div className="w-16 md:w-24 h-6 md:h-8 bg-gray-700 mx-auto -mt-0.5 relative z-0"></div>
-                                        <div className="w-24 md:w-32 h-1.5 md:h-2 bg-gray-700 mx-auto rounded-full shadow-lg relative z-0"></div>
-                                    </div>
-                                )}
-
-                                {/* MOBILE PHONE VIEW */}
-                                {activeTab === 'mobile' && (
-                                    <div className="relative w-60 h-120 md:w-65 md:h-130 bg-gray-900 rounded-4xl border-8 border-gray-800 shadow-2xl overflow-hidden group">
-                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-b-2xl z-20"></div>
-                                        <VideoPlayer src={project.mobileVideo} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                                        <div className="absolute inset-0 bg-linear-to-tr from-white/10 to-transparent pointer-events-none z-10"></div>
-                                    </div>
-                                )}
-
-                                <div className="mt-4 text-center flex flex-col items-center w-full px-4">
-                                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{project.title}</h3>
-                                    <p className="text-gray-400 text-xs md:text-sm mb-6">{project.tech}</p>
-                                    <Link href={project.link} target="_blank" rel="noopener noreferrer" className="group/btn inline-flex items-center gap-2 px-6 py-2 rounded-full border border-brand-green/50 text-brand-green text-xs md:text-sm font-bold tracking-wider hover:bg-brand-green hover:text-brand-dark transition-all duration-300 hover:shadow-[0_0_15px_rgba(21,245,88,0.4)]">
-                                        LIVE PREVIEW
-                                        <ExternalLink className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
-                                    </Link>
-                                </div>
+                                <h4 className="text-brand-green font-bold text-lg mb-4 uppercase tracking-widest">
+                                    {activeTab === 'pc' ? "Desktop Projects (Arix Mart & AI Assistant)" : "Mobile Experience (Next.js Web App)"}
+                                </h4>
+                                <p className="text-gray-300 text-lg leading-relaxed">
+                                    {activeTab === 'pc'
+                                        ? "Optimized for Desktop (Windows) to handle high-performance tasks and complex system logic. These applications are built using Python and PyQt6 to provide a robust user experience for business environments."
+                                        : "The Mobile view showcases the fully responsive version of my Next.js web application. I've focused on creating a seamless 'App-like' experience for mobile users, ensuring high performance and intuitive navigation on smaller screens."}
+                                </p>
                             </motion.div>
-                        ))}
+                        </AnimatePresence>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 lg:gap-20">
+                        {projects
+                            .filter(project => activeTab === 'pc' || project.id === 1)
+                            .map((project, index) => (
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.2 }}
+                                    viewport={{ once: true }}
+                                    // Added gap-10 here to separate Monitor from Text
+                                    className="flex flex-col items-center w-full gap-16"
+                                >
+                                    {/* PC MONITOR VIEW */}
+                                    {activeTab === 'pc' && (
+                                        <div className="relative w-full max-w-112.5 aspect-video group">
+                                            {/* Video Wrapper */}
+                                            <div className="relative bg-gray-900 rounded-t-xl border-4 md:border-6 border-gray-800 shadow-2xl overflow-hidden w-full h-full">
+                                                <VideoPlayer src={project.pcVideo} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                                                <div className="absolute inset-0 bg-linear-to-tr from-white/5 to-transparent pointer-events-none"></div>
+                                            </div>
+                                            {/* Stand Base */}
+                                            <div className="h-4 md:h-6 bg-gray-800 rounded-b-xl flex items-center justify-center border-t border-gray-700">
+                                                <div className="w-1 h-1 bg-green-500 rounded-full shadow-[0_0_5px_#22c55e]"></div>
+                                            </div>
+                                            <div className="w-16 md:w-24 h-6 md:h-8 bg-gray-700 mx-auto -mt-0.5 relative z-0"></div>
+                                            <div className="w-24 md:w-32 h-1.5 md:h-2 bg-gray-700 mx-auto rounded-full shadow-lg relative z-0"></div>
+                                        </div>
+                                    )}
+
+                                    {/* MOBILE PHONE VIEW */}
+                                    {activeTab === 'mobile' && (
+                                        <div className="relative w-60 h-120 md:w-65 md:h-130 bg-gray-900 rounded-4xl border-8 border-gray-800 shadow-2xl overflow-hidden group">
+                                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-b-2xl z-20"></div>
+                                            <VideoPlayer src={project.mobileVideo} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                                            <div className="absolute inset-0 bg-linear-to-tr from-white/10 to-transparent pointer-events-none z-10"></div>
+                                        </div>
+                                    )}
+
+                                    <div className="text-center flex flex-col items-center w-full px-4">
+                                        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{project.title}</h3>
+                                        <p className="text-gray-400 text-xs md:text-sm mb-6">{project.tech}</p>
+                                        <Link href={project.link} target="_blank" rel="noopener noreferrer" className="group/btn inline-flex items-center gap-2 px-6 py-2 rounded-full border border-brand-green/50 text-brand-green text-xs md:text-sm font-bold tracking-wider hover:bg-brand-green hover:text-brand-dark transition-all duration-300 hover:shadow-[0_0_15px_rgba(21,245,88,0.4)]">
+                                            LIVE PREVIEW
+                                            <ExternalLink className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            ))}
                     </div>
                 </div>
             </section>
