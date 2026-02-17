@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL('https://my-portfolio-delta-ruby-18.vercel.app'),
   title: {
-    default: "Dasun Ravihansa | Full-Stack Developer",
+    default: "Dasun Ravihansa | Software Developer & AI Engineer in Sri Lanka | Offical Website",
     template: "%s | Dasun Ravihansa"
   },
   description: "Dasun Ravihansa is a self-taught Full-Stack Developer and UI/UX Designer from Sri Lanka, specializing in Next.js, React, and modern web technologies.",
@@ -27,7 +27,8 @@ export const metadata = {
     "React Developer",
     "Portfolio website",
     "Web Designer Sri Lanka",
-    "Software Engineer Portfolio"
+    "Software Engineer Portfolio",
+    "Dasun Ravihansa Developer"
   ],
   authors: [{ name: "Dasun Ravihansa" }],
   creator: "Dasun Ravihansa",
