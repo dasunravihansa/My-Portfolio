@@ -109,7 +109,7 @@ function VideoPlayer({ src, className }: { src: string, className?: string }) {
                 loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
             />
         </div>
     );
@@ -284,7 +284,7 @@ export default function Home() {
                 <div className="flex-1 flex justify-center items-center relative w-full h-full">
                     <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity }} className="absolute w-75 h-75 bg-brand-green/20 rounded-full blur-[100px] z-0" />
                     <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1, y: [0, -20, 0] }} transition={{ duration: 0.8, y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }} className="relative w-75 h-75 md:w-112.5 md:h-112.5 rounded-full overflow-hidden border border-brand-green/20 shadow-2xl">
-                        <Image src="/profile.webp" alt="Profile" fill className="object-cover" />
+                        <Image src="/profile.webp" alt="Profile" fill className="object-cover" priority sizes="(max-width: 768px) 300px, 450px" />
                     </motion.div>
                 </div>
             </section>
@@ -299,7 +299,7 @@ export default function Home() {
                         whileInView={{ scale: 1.1 }}
                         transition={{ duration: 10, ease: "linear" }}
                     >
-                        <Image src="/profile.webp" alt="Background" fill className="object-cover" />
+                        <Image src="/profile.webp" alt="Background" fill className="object-cover" loading="eager" sizes="100vw" />
                     </motion.div>
                     <div className="absolute inset-0 bg-black/20 z-10"></div>
                     <div className="absolute inset-0 bg-linear-to-t from-brand-dark via-transparent to-transparent z-10"></div>
